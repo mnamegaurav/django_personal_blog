@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block main_ %}
+<main>
+    <div class="container mt-5">
+        <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>WhoAmI</h3>
+        <hr style="margin-top:2em; margin-bottom: 2em;">
+
+
+        <div class="row justify-content-around">
+
+            <div class="col-md col-lg-8 col-sm">
+                <p class="card-text justify-content-center font-gugi" style="font-size:3em;">
+                    GAURAV
+                    SHARMA.</p>
+                <p class="card-text justify-content-center font-work-sans">I
+                    Am Computer Geek , In Love With Linux ,Python & Data Science. I Am Basically Science Graduate,
+                    My
+                    Interest In Computers Systems Made Me A Linux Nerd. As An Introvert , I Hate Being Social. You
+                    Can Contact Me
+                    Through
+                    Email. My Email is </p>
+                <p class="card-text justify-content-center font-muli">
+                        <strong style="display: inline-block;">
+                            <a href="mailto:gaurav91297@gmail.com" target="">Email</a>
+                        </strong>
+                        <strong style="display: inline-block;">
+                            <a href="tg://resolve?domain=hamhaingaurav" target="" style="color: #66FF66">Telegram</a>
+                        </strong>
+                        <strong style="display: inline-block;">
+                            <a href="https://twitter.com/hamhaingaurav" target="blank">Twitter</a>
+                        </strong>
+                        <strong style="display: inline-block;">
+                            <a href="https://www.quora.com/profile/Gaurav-Sharma-4071" target="blank" style="color: #66FF66">Quora</a>
+                        </strong>
+                </p>
+            </div>
+
+
+            <div class="col-md col-lg-4 col-sm">
+                <img src="{% static 'img/gaurav.jpg' %}" alt="gaurav"
+                    class="img-fluid justify-content-center rounded border border-warning shadow bg-white rounded float-right"
+                    style="width:70% ">
+            </div>
+
+        </div>
+
+
+    </div>
+</main>
+
+{% endblock %}

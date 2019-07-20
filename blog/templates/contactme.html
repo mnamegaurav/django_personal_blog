@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+
+
+{% block form_ %}
+
+
+<div class="container mt-5">
+    <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Contact Me</h3>
+    <hr style="margin-top:2em; margin-bottom:2em;">
+
+    <form style="margin-bottom:5em;" action="." method="POST">
+        {% csrf_token %}
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputEmail4">Email</label>
+                {{ form.email }}
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputName">Full Name</label>
+            {{ form.full_name }}
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputCity">City</label>
+                {{ form.city }}
+            </div>
+
+            <div class="form-group col-md-2">
+                <label for="inputZip">Zip</label>
+                {{ form.zip_code }}
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="mb-3">
+                <label>Wanna Say Something About Me</label>
+                {{ form.say_something }}
+
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+{% endblock %}

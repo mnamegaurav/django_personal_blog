@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block article_create_form %}
+
+<div class="container mt-5">
+
+        <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Create Article</h3>
+        <hr style="margin-top:2em; margin-bottom:2em;">
+
+        <form action="{% url 'article_create_page' %}" method="POST" style="margin-bottom:5em;">
+                {% csrf_token %}
+
+                <div class="form-row">
+                        <div class="form-group col">
+                                <label for="inputTitle">Title</label>
+                                {{ form.title }}
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col">
+                                <label for="inputSlug">Slug</label>
+                                {{ form.slug }}
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col">
+                                <label for="inputDescription">Description</label>
+                                {{ form.description }}
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col">
+                                <label>Body</label>
+                                {{ form.body }}
+                        </div>
+                </div>
+
+                <div class="form-row">
+                        <div class="form-group col">
+                                <label for="inputWriter">Writer</label>
+                                {{ form.writer }}
+                        </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+</div>
+{% endblock %}

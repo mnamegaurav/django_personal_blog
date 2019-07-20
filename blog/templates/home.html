@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block jumbotron_ %}
+
+<div class="container mt-3">
+    <div class="jumbotron">
+        <h1 class="display-4">The Linux Blog</h1>
+        <p class="lead font-work-sans" style="font-size: 1.7em;">Hi I Am Gaurav,This Blog Is About My Personal
+            Experience In The World Of Linux.</p>
+        <hr class="my-4">
+        <p class="font-work-sans" style="font-size: 1.25em;">You Can Find Some Of The Interesting Articles In This
+            Website.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'article_list_page' %}" role="button">Articles</a>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block main_ %}
+
+
+<main class=container>
+    <div class="row mb-2">
+        {% for article in article_list %}
+        <div class="col-md-4 d-flex">
+            <div
+                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-success">{{article.writer}}</strong>
+                    <h3 class="mb-0">{{article.title}}</h3>
+                    <div class="mb-1 text-muted">{{article.date_published}}</div>
+                    <p class="mb-auto font-work-sans" style="font-size: 1.3em">{{article.description}}</p>
+                    <a href="/article/{{ article.slug }}" class="stretched-link">Continue reading</a>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+
+{% endblock %}

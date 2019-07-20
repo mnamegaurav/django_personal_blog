@@ -1,0 +1,35 @@
+.font-gugi {
+	font-size: 1em;
+	font-family: 'Gugi', cursive;
+}
+
+.font-muli {
+	font-size: 1.2em;
+	margin-bottom: 1em;
+	font-family: 'Muli', sans-serif;
+}
+
+.font-work-sans {
+	font-size: 1.5em;
+	font-family: 'Work Sans', sans-serif;
+}
+
+.fa {
+	padding: 20px;
+	font-size: 30px;
+	width: 30px;
+	text-align: center;
+	text-decoration: none;
+	margin: 5px 2px;
+}
+
+.fa:hover {
+	opacity: 0.7;
+	.fa-twitter {
+		background: #55ACEE;
+		color: white;
+	}
+	.fa-reddit {
+		background: #ff5700;
+		color: white;
+	}

@@ -1,0 +1,103 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
+	<title>{{ title }}</title>
+
+
+</head>
+
+<body>
+	<nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #fdefff">
+		<a class="navbar-brand mb-0 h1" href="{% url '/' %}"><img src="{% static 'img/linux.png' %}" width="30"
+				height="30" class="d-inline-block align-top" alt="logo">The Linux Blog</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item {{home}}">
+					<a class="nav-link" href="{% url '/' %}">Home <span class="sr-only">(current)</span></a>
+				</li>
+				<li class="nav-item {{articles}}">
+					<a class="nav-link" href="{% url 'article_list_page' %}">Articles</a>
+				</li>
+				<li class="nav-item {{whoami}}">
+					<a class="nav-link" href="{% url 'whoami_page' %}">WhoAmI</a>
+				</li>
+				<li class="nav-item {{contactme}}">
+					<a class="nav-link" href="{% url 'contactme_page' %}">Contact Me</a>
+				</li>
+			</ul>
+			<!-- <form class="form-inline my-2 my-lg-0">
+				<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+			</form> -->
+		</div>
+	</nav>
+
+	{% block jumbotron_ %}{% endblock %}
+
+	{% block main_ %}{% endblock %}
+
+	{% block card-deck_ %}{% endblock %}
+
+	{% block form_ %}{% endblock %}
+
+	{% block article_detail_ %}{% endblock %}
+
+	{% block article_create_form %}{% endblock %}
+
+
+
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		crossorigin="anonymous"></script>
+
+
+
+	<hr style="margin-top:2em; margin-bottom:2em;">
+	<footer class="blog-footer text-center">
+		<p><b>Blog Made By Gaurav</b></p>
+		<!-- <div class="row justify-content-center" style="margin-top:1em; margin-bottom:2em;">
+    		<a href="#" class="fa fa-twitter col" >twitter</a> 
+    		<a href="#" class="fa fa-reddit col">reddit</a>
+		</div> -->
+		<p>
+			<a href="#">Back to top</a>
+		</p>
+
+	</footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+
+{% block card-deck_ %}
+
+<main>
+    <div class="container mt-5">
+
+        <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Articles</h3>
+        <hr style="margin-top:2em; margin-bottom:3em;">
+
+        <div class="card-deck">
+            <div class="row justify-content-center">
+                {% for article in article_list %}
+                <div class="col-auto mb-3 d-flex">
+                    <div class="card border-success mb-3" style="width: 18rem;">
+                        <div class="card-header bg-transparent border-success">
+                            <strong>{{article.date_published}}</strong></div>
+                        <div class="card-body text-success">
+                            <h5 class="card-title">{{article.title}}</h5>
+                            <p class="card-text font-work-sans" style="font-size: 1.1em;">{{article.description }}</p>
+                        </div>
+                        <div class="card-footer bg-transparent border-success font-work-sans" style="font-size: 1em;">
+                            {{article.writer}}</div>
+                        <a href="/article/{{ article.slug }}" class="stretched-link"></a>
+                    </div>
+                </div>
+                {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
