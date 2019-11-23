@@ -1,0 +1,14 @@
+{% extends "blog/base.html" %} 
+{% block user_login_ %}
+
+<div class="container mt-5">
+    <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>You Have Been Logged Out!</h3>
+        <hr style="margin-top:2em; margin-bottom: 2em;">
+    
+    <div class="pt=3">
+        <small class="text-muted">
+            <a href="{% url 'login' %}">Log In Again !</a>
+        </small>
+    </div>
+</div>
+{% endblock %}
