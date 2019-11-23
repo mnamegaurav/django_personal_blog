@@ -1,10 +1,11 @@
-from django.forms import ModelForm,  TextInput, EmailInput, Textarea
-from .models import UserData, Article
+from django.forms import ModelForm,TextInput, EmailInput, Textarea
+
+from .models import ContactMeData, Article
 
 
-class UserDataForm(ModelForm):
+class ContactMeDataForm(ModelForm):
     class Meta:
-        model = UserData
+        model = ContactMeData
 
         fields = ('email', 'full_name', 'city', 'zip_code', 'say_something')
 
@@ -25,4 +26,6 @@ class ArticleForm(ModelForm):
         'slug': TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputSlug', 'placeholder': 'Slug'}),
         'description':TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputDescription', 'placeholder': 'Description'}),
         'body':Textarea(attrs={'type': 'text', 'class': 'form-control', 'id': 'Textarea','style': 'height: 300px;'}),
-        'writer':TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputWriter', 'placeholder': 'Writer'}),}
+        # 'writer':ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+        # TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputWriter', 'placeholder': 'Writer'}),
+        }

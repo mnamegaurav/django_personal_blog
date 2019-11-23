@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "blog/base.html" %}
 
 {% block article_create_form %}
 
@@ -8,6 +8,7 @@
         <hr style="margin-top:2em; margin-bottom:2em;">
 
         <form action="{% url 'article_create_page' %}" method="POST" style="margin-bottom:5em;">
+        <!-- <form style="margin-bottom:5em;" action="." method="POST"> -->
                 {% csrf_token %}
 
                 <div class="form-row">

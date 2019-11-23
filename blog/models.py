@@ -2,7 +2,6 @@ from django.db import models
 import datetime
 from django.contrib.auth.models import User
 
-# Create your models here.
 
 
 class Article(models.Model):
@@ -13,22 +12,17 @@ class Article(models.Model):
 
     date_published = models.DateTimeField(auto_now_add=True)
 
-    #time_published = models.DateTimeField(auto_now_add=True)
-
     description = models.TextField(max_length=100)
-
-    # thumbnail =
 
     body = models.TextField()
 
-    # writer = models.CharField(max_length=25)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.title
 
 
-class UserData(models.Model):
+class ContactMeData(models.Model):
 
     email = models.EmailField()
 

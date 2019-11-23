@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-
+{% extends "blog/base.html" %}
 {% block jumbotron_ %}
 
 <div class="container mt-3">
@@ -24,7 +23,7 @@
         {% for article in article_list %}
         <div class="col-md-4 d-flex">
             <div
-                class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                class="col-12 row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static">
                     <strong class="d-inline-block mb-2 text-success">{{article.writer}}</strong>
                     <h3 class="mb-0">{{article.title}}</h3>

@@ -2,8 +2,8 @@
 
 from django.http import Http404, HttpResponse
 from django.shortcuts import render,  get_object_or_404
-from .models import Article, UserData
-from .forms import UserDataForm, ArticleForm
+from .models import Article, ContactMeData
+from .forms import ContactMeDataForm, ArticleForm
 
 
 def article_detail_page(request, slug):
@@ -14,7 +14,7 @@ def article_detail_page(request, slug):
 
     article_list = Article.objects.all()
 
-    context = {'article': article, 'home': 'active',
+    context = {'title': 'Gizmo','article': article, 'home': 'active',
                'article_list': article_list}
 
     return render(request, template_name, context)
@@ -56,12 +56,12 @@ def whoami_page(request):
 
 def contactme_page(request):
 
-    form = UserDataForm(request.POST)
+    form = ContactMeDataForm(request.POST)
 
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            form = UserDataForm()
+            form = ContactMeDataForm()
 
     template_name = 'contactme.html'
 
@@ -78,7 +78,10 @@ def article_create_page(request):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
+            Article.writer = request.user
             form = ArticleForm()
+    else:
+        form = ArticleForm()
 
     template_name = 'article_create.html'
 

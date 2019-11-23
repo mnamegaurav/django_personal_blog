@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% load crispy_forms_tags %}
+{% block user_login_ %}
+
+<div class="container mt-5">
+    <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Sign Up</h3>
+        <hr style="margin-top:2em; margin-bottom: 2em;">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form|crispy }}
+        </div>
+        <div class="form-group">
+            <div class="mb-3">
+                <button class="btn btn-outline-info" type="submit">Sign Up</button>
+            </div>
+        </div>
+    </form>
+    <div class="border-top pt=3">
+        <small class="text-muted">
+            Already have an account ?<a class="ml-2" href="#">Sign In</a>
+        </small>
+    </div>
+</div>
+{% endblock %}

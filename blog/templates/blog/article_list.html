@@ -1,5 +1,4 @@
-{% extends "base.html" %}
-
+{% extends "blog/base.html" %}
 
 {% block card-deck_ %}
 
@@ -8,6 +7,10 @@
 
         <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Articles</h3>
         <hr style="margin-top:2em; margin-bottom:3em;">
+        <div class="col-auto mb-3 d-flex justify-content-center">
+            <button class="btn btn-primary">Create New Article</button>
+            <a href="/article_create" class="stretched-link"></a>
+        </div>
 
         <div class="card-deck">
             <div class="row justify-content-center">
