@@ -16,12 +16,23 @@
             <a class="ml-2" href="{% url 'article_delete_page' article.slug%}">Delete</a>
         </small>        
 {% endif %}
-        
-
-
     </p>
 	<br>
 	<p style="font-size:1.5em;" class="font-work-sans">{{article.body}}</p>
+
+    <form action="{% url 'article_likes_dislikes' %}" method="post">
+    {% csrf_token %}
+    {% if liked %}
+    <button type="submit" name="article_id" value="{{ article.id }}" class="btn btn-primary" disabled>Like</button>
+    <button type="submit" name="article_id" value="{{ article.id }}" class="btn btn-primary">Dislike</button>
+
+    {% else %}
+    <button type="submit" name="article_id" value="{{ article.id }}" class="btn btn-primary">Like</button>
+    <button type="submit" name="article_id" value="{{ article.id }}" class="btn btn-primary" disabled>Dislike</button>
+
+    {% endif %}
+    </form>
+    
 </div>
 
 {% endblock %}

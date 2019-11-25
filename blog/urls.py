@@ -13,7 +13,8 @@ urlpatterns = [
     path('article/<str:slug>/delete', ArticleDeleteView.as_view(), name='article_delete_page'),
     path('whoami/', views.whoami_page, name='whoami_page'),
     path('contactme/', views.contactme_page, name='contactme_page'),
-    path('article_create/', ArticleCreateView.as_view(), name='article_create_page')
+    path('article_create/', ArticleCreateView.as_view(), name='article_create_page'),
+    path('article_likes_dislikes/', views.article_likes_dislikes, name='article_likes_dislikes'),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

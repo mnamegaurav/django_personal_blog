@@ -1,7 +1,7 @@
 # this file is created by gaurav
 
-from django.http import Http404, HttpResponse
-from django.shortcuts import render,  get_object_or_404
+from django.http import Http404, HttpResponse,HttpResponseRedirect
+from django.shortcuts import render,  get_object_or_404,redirect
 from .models import Article, ContactMeData
 from .forms import ContactMeDataForm
 from django.views.generic import (
@@ -21,29 +21,41 @@ def article_detail_page(request, slug):
     template_name = 'article_detail.html'
 
     article_list = Article.objects.all()
+    
+    liked = False
+    if article.likes.filter(id=request.user.id).exists():
+        liked = True
 
     context = {'title': 'The Linux Blog','article': article, 'home': 'active',
-               'article_list': article_list}
+               'article_list': article_list,'liked':liked,}
 
     return render(request, template_name, context)
+
+def article_likes_dislikes(request):
+    article = get_object_or_404(Article,id=request.POST.get('article_id'))
+    liked = False
+    if article.likes.filter(id=request.user.id).exists():
+        article.likes.remove(request.user)
+        article.dislikes.add(request.user)
+        liked = False
+    else:
+        article.likes.add(request.user)
+        article.dislikes.remove(request.user)
+        liked = True
+    return HttpResponseRedirect(article.get_absolute_url())
 
 
 def home_page(request):
 
     template_name = 'home.html'
 
-    article_list = Article.objects.all().order_by(
-        '-date_published')[0:6]  # [:-5:-1]
+    article_list = Article.objects.all().order_by('-date_published')[0:6]
 
     context = {'title': 'The Linux Blog - Home',
                'home': 'active', 'article_list': article_list}
 
     return render(request, template_name, context)
 
-class ArticleListView(ListView):
-    model = Article
-    template_name='blog/article_list.html'
-    ordering = ['-date_published']
 
 def whoami_page(request):
 
@@ -71,10 +83,19 @@ def contactme_page(request):
     return render(request, template_name, context)
 
 
+class ArticleListView(ListView):
+    model = Article
+    template_name='blog/article_list.html'
+    # article = Article()
+    # r1 = article.total_likes()
+    # r2 = article.total_dislikes()
+    # ordering = ['r2']
+
+
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
     template_name='blog/article_form.html'
-    fields = ['title','slug','description','body']
+    fields = ['title','slug','description','body','category']
     success_url="/article_list"
 
     def form_valid(self,form):
