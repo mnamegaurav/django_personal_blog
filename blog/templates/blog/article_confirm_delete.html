@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block article_create_form %}
+
+<div class="container mt-5">
+    <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Delete Article '{{ object.title }}'</h3>
+        <hr style="margin-top:2em; margin-bottom: 2em;">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="form-group">
+            <div class="mb-3 justify-content-center">
+                <button class="btn btn-outline-danger" type="submit">Yes!</button>
+                <a class="btn btn-outline-info" href="{% url 'article' object.slug %}">No!</a>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

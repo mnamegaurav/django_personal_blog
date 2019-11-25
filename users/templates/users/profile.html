@@ -1,0 +1,16 @@
+{% extends "blog/base.html" %}
+{% load static %}
+
+{% block main_ %}
+<main>
+    <div class="container mt-5">
+        <h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>Profile</h3>
+        <hr style="margin-top:2em; margin-bottom: 2em;">
+        <div class="row justify-content-around">
+            <h1>Username - {{ user.username }}</h1>
+        </div>
+
+    </div>
+</main>
+
+{% endblock %}

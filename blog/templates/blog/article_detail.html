@@ -6,7 +6,20 @@
 	<h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>{{article.title}}</h3>
 	<hr style="margin-top:2em; margin-bottom: 2em;">
 	<p class="blog-post-meta text-muted font-gugi" style="font-size:1.4em">{{article.date_published}} by <a
-			href="{% url 'whoami_page' %}">{{article.writer}}</a></p>
+			href="{% url 'whoami_page' %}">{{article.writer}}</a>
+        
+{% if article.writer == user %}
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'article_edit_page' article.slug %}">Edit</a>
+        </small>
+        <small class="text-muted">
+            <a class="ml-2" href="{% url 'article_delete_page' article.slug%}">Delete</a>
+        </small>        
+{% endif %}
+        
+
+
+    </p>
 	<br>
 	<p style="font-size:1.5em;" class="font-work-sans">{{article.body}}</p>
 </div>

@@ -3,7 +3,15 @@
 from django.http import Http404, HttpResponse
 from django.shortcuts import render,  get_object_or_404
 from .models import Article, ContactMeData
-from .forms import ContactMeDataForm, ArticleForm
+from .forms import ContactMeDataForm
+from django.views.generic import (
+    CreateView,
+    ListView,
+    DetailView,
+    UpdateView,
+    DeleteView
+)
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 
 def article_detail_page(request, slug):
@@ -14,7 +22,7 @@ def article_detail_page(request, slug):
 
     article_list = Article.objects.all()
 
-    context = {'title': 'Gizmo','article': article, 'home': 'active',
+    context = {'title': 'The Linux Blog','article': article, 'home': 'active',
                'article_list': article_list}
 
     return render(request, template_name, context)
@@ -27,29 +35,21 @@ def home_page(request):
     article_list = Article.objects.all().order_by(
         '-date_published')[0:6]  # [:-5:-1]
 
-    context = {'title': 'Gizmo - Home',
+    context = {'title': 'The Linux Blog - Home',
                'home': 'active', 'article_list': article_list}
 
     return render(request, template_name, context)
 
-
-def article_list_page(request):
-
-    template_name = 'article_list.html'
-
-    article_list = Article.objects.all()[::-1]
-
-    context = {'title': 'Gizmo - Articles',
-               'articles': 'active', 'article_list': article_list, }
-
-    return render(request, template_name, context)
-
+class ArticleListView(ListView):
+    model = Article
+    template_name='blog/article_list.html'
+    ordering = ['-date_published']
 
 def whoami_page(request):
 
     template_name = 'whoami.html'
 
-    context = {'title': 'Gizmo - WhoAmI', 'whoami': 'active'}
+    context = {'title': 'The Linux Blog - WhoAmI', 'whoami': 'active'}
 
     return render(request, template_name, context)
 
@@ -65,27 +65,45 @@ def contactme_page(request):
 
     template_name = 'contactme.html'
 
-    context = {'title': 'Gizmo - ContactMe',
+    context = {'title': 'The Linux Blog - ContactMe',
                'contactme': 'active', 'form': form}
 
     return render(request, template_name, context)
 
 
-def article_create_page(request):
+class ArticleCreateView(LoginRequiredMixin, CreateView):
+    model = Article
+    template_name='blog/article_form.html'
+    fields = ['title','slug','description','body']
+    success_url="/article_list"
 
-    form = ArticleForm(request.POST)
+    def form_valid(self,form):
+        form.instance.writer = self.request.user
+        return super().form_valid(form)
 
-    if request.method == 'POST':
-        if form.is_valid():
-            form.save()
-            Article.writer = request.user
-            form = ArticleForm()
-    else:
-        form = ArticleForm()
+class ArticleUpdateView(LoginRequiredMixin,UserPassesTestMixin, UpdateView):
+    model = Article
+    template_name='blog/article_form.html'
+    fields = ['title','slug','description','body']
+    success_url="/article_list"
 
-    template_name = 'article_create.html'
+    def form_valid(self,form):
+        form.instance.writer = self.request.user
+        return super().form_valid(form)
 
-    context = {'title': 'Gizmo - Create Article',
-               'articles': 'active', 'form': form}
+    def test_func(self):
+        article = self.get_object()
+        if self.request.user == article.writer:
+            return True
+        return False 
 
-    return render(request, template_name, context)
+
+class ArticleDeleteView(LoginRequiredMixin,UserPassesTestMixin,DeleteView):
+    model = Article
+    success_url="/article_list"
+
+    def test_func(self):
+        article = self.get_object()
+        if self.request.user == article.writer:
+            return True
+        return False 

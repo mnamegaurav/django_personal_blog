@@ -55,10 +55,12 @@
 		</div>
 		<div class="navbar-nav">
 			{% if user.is_authenticated %}
-				<a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
+			<a href="{% url 'article_create_page' %}" class="nav-item nav-link">Create Article</a>
+			<a href="{% url 'profile' %}" class="nav-item nav-link {{profile}}">Profile</a>
+			<a href="{% url 'logout' %}" class="nav-item nav-link">Logout</a>
 			{% else %}
-				<a href="{% url 'login' %}" class="nav-item nav-link">Login</a>
-				<a href="{% url 'register' %}" class="nav-item nav-link">Register</a>
+				<a href="{% url 'login' %}" class="nav-item nav-link {{login}}">Login</a>
+				<a href="{% url 'register' %}" class="nav-item nav-link {{register}}">Register</a>
 			{% endif %}
 		</div>
 	</nav>
