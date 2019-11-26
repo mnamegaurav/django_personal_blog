@@ -1,6 +1,6 @@
 from django.forms import ModelForm,TextInput, EmailInput, Textarea
 
-from .models import ContactMeData, Article
+from .models import ContactMeData, Article,Comment
 
 
 class ContactMeDataForm(ModelForm):
@@ -14,3 +14,10 @@ class ContactMeDataForm(ModelForm):
                    'city': TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputCity', 'placeholder': 'City'}),
                    'zip_code': TextInput(attrs={'type': 'text', 'class': 'form-control', 'id': 'inputZip', 'placeholder': 'Zip'}),
                    'say_something': Textarea(attrs={'type': 'text', 'class': 'form-control', 'id': 'Textarea', 'placeholder': 'Say Something', 'style': 'height:100px'}), }
+
+
+class CommentForm(ModelForm):
+    class Meta:
+        model = Comment
+
+        fields = ('content',)

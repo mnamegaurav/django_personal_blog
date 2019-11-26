@@ -2,8 +2,8 @@
 
 from django.http import Http404, HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,  get_object_or_404,redirect
-from .models import Article, ContactMeData
-from .forms import ContactMeDataForm
+from .models import Article, ContactMeData, Comment
+from .forms import ContactMeDataForm, CommentForm
 from django.views.generic import (
     CreateView,
     ListView,
@@ -24,10 +24,20 @@ def article_detail_page(request, slug):
     
     liked = False
     if article.likes.filter(id=request.user.id).exists():
-        liked = True
+        liked = True  
+
+
+    comments = Comment.objects.filter(article=article).order_by('-date_time')
+    comment_form = CommentForm(request.POST or None)
+    if request.method == 'POST':
+        if comment_form.is_valid():
+            content = request.POST.get('content')
+            comment = Comment.objects.create(article=article,user=request.user,content=content)
+            comment.save()
+            return HttpResponseRedirect(article.get_absolute_url())
 
     context = {'title': 'The Linux Blog','article': article, 'home': 'active',
-               'article_list': article_list,'liked':liked,}
+               'article_list': article_list,'liked':liked,'comments':comments,'comment_form':comment_form}
 
     return render(request, template_name, context)
 

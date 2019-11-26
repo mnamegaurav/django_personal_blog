@@ -53,3 +53,13 @@ class ContactMeData(models.Model):
 
     def __str__(self):
         return self.email
+
+
+class Comment(models.Model):
+    article = models.ForeignKey(Article, on_delete=models.PROTECT)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(max_length=140)
+    date_time = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}-{}'.format(self.article.title,str(self.user.username))

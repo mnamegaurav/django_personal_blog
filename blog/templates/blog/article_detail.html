@@ -6,7 +6,7 @@
 	<h3 style="font-family: Lato; color: #37474f;" class='text-center font-weight-bold'>{{article.title}}</h3>
 	<hr style="margin-top:2em; margin-bottom: 2em;">
 	<p class="blog-post-meta text-muted font-gugi" style="font-size:1.4em">{{article.date_published}} by <a
-			href="{% url 'whoami_page' %}">{{article.writer}}</a>
+			href="{% url 'whoami_page' %}">{{ article.writer|capfirst }}</a>
         
 {% if article.writer == user %}
         <small class="text-muted">
@@ -18,7 +18,7 @@
 {% endif %}
     </p>
 	<br>
-	<p style="font-size:1.5em;" class="font-work-sans">{{article.body}}</p>
+	<p style="font-size:1.5em;" class="font-work-sans">{{article.body|linebreaks}}</p>
 
     <form action="{% url 'article_likes_dislikes' %}" method="post">
     {% csrf_token %}
@@ -32,6 +32,40 @@
 
     {% endif %}
     </form>
+    <hr style="margin-top:2em; margin-bottom:2em;">
+    <div class="main-comment-section">
+        Comments-
+        <br>
+        <div>
+        {% if comments.count is 0 %}
+            <div>
+                No Comments Here Yet!
+            </div>
+        {% else %}
+            <div>{{ comments.count }} Comments</div>
+        {% endif %}
+         <form method="post">
+             {% csrf_token %}
+             {{comment_form.content}}
+             <br>
+             <button type="submit" value="Submit" class="btn btn-primary">
+                 Comment
+             </button>
+
+         </form>
+
+        {% for comment in comments %}
+        <div class="container mt-3">
+        <blockquote class="blockquote">
+            <footer class="blockquote-footer">by <cite title="Source Title">{{ comment.user|capfirst}}</cite></footer>
+            <small>
+                <p class="mb-0">{{ comment.content }}</p>
+            </small>
+        </blockquote>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
     
 </div>
 
