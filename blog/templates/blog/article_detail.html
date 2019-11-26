@@ -20,6 +20,8 @@
 	<br>
 	<p style="font-size:1.5em;" class="font-work-sans">{{article.body|linebreaks}}</p>
 
+
+{% if user.is_authenticated %}
     <form action="{% url 'article_likes_dislikes' %}" method="post">
     {% csrf_token %}
     {% if liked %}
@@ -66,7 +68,7 @@
         {% endfor %}
         </div>
     </div>
-    
+{% endif %}
 </div>
 
 {% endblock %}
