@@ -86,11 +86,7 @@ def contactme_page(request):
 class ArticleListView(ListView):
     model = Article
     template_name='blog/article_list.html'
-    # article = Article()
-    # r1 = article.total_likes()
-    # r2 = article.total_dislikes()
-    # ordering = ['r2']
-
+    ordering = ['-date_published']
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
     model = Article
