@@ -1,4 +1,4 @@
-# this file is created by gaurav
+ # this file is created by gaurav
 
 from django.http import Http404, HttpResponse,HttpResponseRedirect
 from django.shortcuts import render,  get_object_or_404,redirect
@@ -18,13 +18,13 @@ def article_detail_page(request, slug):
 
     article = get_object_or_404(Article, slug=slug)
 
-    template_name = 'article_detail.html'
+    template_name = 'blog/article_detail.html'
 
     article_list = Article.objects.all()
     
     liked = False
     if article.likes.filter(id=request.user.id).exists():
-        liked = True  
+        liked = True
 
 
     comments = Comment.objects.filter(article=article).order_by('-date_time')
@@ -57,7 +57,7 @@ def article_likes_dislikes(request):
 
 def home_page(request):
 
-    template_name = 'home.html'
+    template_name = 'blog/home.html'
 
     article_list = Article.objects.all().order_by('-date_published')[0:6]
 
@@ -69,7 +69,7 @@ def home_page(request):
 
 def whoami_page(request):
 
-    template_name = 'whoami.html'
+    template_name = 'blog/whoami.html'
 
     context = {'title': 'The Linux Blog - WhoAmI', 'whoami': 'active'}
 
@@ -85,7 +85,7 @@ def contactme_page(request):
             form.save()
             form = ContactMeDataForm()
 
-    template_name = 'contactme.html'
+    template_name = 'blog/contactme.html'
 
     context = {'title': 'The Linux Blog - ContactMe',
                'contactme': 'active', 'form': form}
