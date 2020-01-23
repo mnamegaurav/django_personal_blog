@@ -7,5 +7,7 @@ Personal blog app using Django as backend and MySQL for database.
 # Then you have to run these commands inside the root directory of this folder.
 
 "$ python manage.py makemigrations"
+
 "$ python manage.py migrate"
+
 "$ python manage.py runserver"
