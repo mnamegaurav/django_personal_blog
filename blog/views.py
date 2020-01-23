@@ -94,6 +94,7 @@ def contactme_page(request):
 
 
 class ArticleListView(ListView):
+    paginate_by = 4
     model = Article
     template_name='blog/article_list.html'
     ordering = ['-date_published']
