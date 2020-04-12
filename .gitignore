@@ -1,2 +1,10 @@
+/myblog/settings.py
+/myblog/__pycache__/
+/blog/migrations/
+/users/migrations/
+/blog/__pycache__/
+/users/__pycache__/
+/env/
+/media/
+/static/
 db.sqlite3
-__pycache__
