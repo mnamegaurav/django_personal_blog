@@ -14,6 +14,8 @@
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 
+	<link rel="stylesheet" href="{% static 'css/summernote-lite.min.css' %}">
+
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Gugi" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css?family=Work+Sans" rel="stylesheet">
@@ -96,7 +98,12 @@
 	<script src="{% static 'js/jquery-3.4.1.js' %}"></script>
 	<script src="{% static 'js/popper.min.js' %}"></script>
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
-
+	<script src="{% static 'js/summernote-lite.min.js' %}"></script>
+	<script type="text/javascript">
+	    $('#id_body').summernote({
+	        height: 400,
+	    });
+	</script>
 
 
 	<hr style="margin-top:2em; margin-bottom:2em;">
@@ -111,7 +118,7 @@
 		</p>
 
 	</footer>
-
+	
 
 </body>
 
