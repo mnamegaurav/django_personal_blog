@@ -1,8 +1,1 @@
-/myblog/__pycache__/
-/blog/migrations/
-/users/migrations/
-/blog/__pycache__/
-/users/__pycache__/
-/env/
-/media/
-db.sqlite3
+env
