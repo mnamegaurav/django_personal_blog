@@ -1,4 +1,3 @@
-/myblog/settings.py
 /myblog/__pycache__/
 /blog/migrations/
 /users/migrations/
@@ -6,5 +5,4 @@
 /users/__pycache__/
 /env/
 /media/
-/static/
 db.sqlite3
